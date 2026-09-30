@@ -207,7 +207,7 @@ function renderDept(){
   $('sm').innerHTML=`<table><thead><tr><th>ផ្នែក / ក្រុម <span class="mute">(ចុចឈ្មោះ ▶ ឬ Overview ដើម្បីមើលសមាជិក)</span></th><th>សរុប (នាក់)</th><th>មកថ្ងៃនេះ</th><th>បុគ្គលិក</th><th>កម្មករ</th><th>ប្រាក់ខែ/ខែ</th><th></th></tr></thead><tbody>${rows||'<tr><td colspan="7" class="empty">មិនទាន់មានផ្នែក</td></tr>'}<tr class="tot"><td>សរុបទាំងអស់</td>${cells(PP)}<td></td></tr></tbody></table>`;
 }
 
-document.querySelector('.side').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.id==='cp'){chgPin();return}if(b.id==='bk'){dl('hr-backup-'+today()+'.json',JSON.stringify(D),'application/json');return}if(b.id==='rs'){$('rsf').click();return}if(b.id==='lo'){U=null;sb.auth.signOut().finally(()=>location.reload());return}editId=null;nav(b.dataset.v)};
+document.querySelector('.side').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.id==='cp'){chgPin();return}if(b.id==='lo'){U=null;sb.auth.signOut().finally(()=>location.reload());return}editId=null;nav(b.dataset.v)};
 document.querySelector('main').onclick=e=>{
   const b=e.target.closest('button[data-a]');if(!b)return;
   const a=b.dataset.a,p=D.people.find(x=>x.id===b.dataset.i);
@@ -337,11 +337,6 @@ function renderRep(){if(!$('rmo').value)$('rmo').value=today().slice(0,7);const 
 $('rmo').oninput=renderRep;
 $('rcv').onclick=()=>dl('report-'+$('rmo').value+'.csv',csv([['អត្តលេខ','ឈ្មោះ','ផ្នែក','ប្រាក់ខែ','ថ្ងៃមក','ប្រាក់ខែតាមថ្ងៃមក']].concat(repRows().map(x=>[x[0].id,x[0].n,x[0].dp||'',x[0].pay,x[1],x[2]]))));
 $('csv').onclick=()=>dl('people-'+today()+'.csv',csv([['អត្តលេខ','ឈ្មោះ','ប្រភេទ','ផ្នែក','តួនាទី','ថ្ងៃចូលធ្វើការ','អត្តសញ្ញាណប័ណ្ណ','ទូរស័ព្ទ','ប្រាក់ខែ','ស្ថានភាព','សហជីព','មធ្យោបាយធ្វើដំណើរ']].concat(LL.map(p=>[p.id,p.n,p.ty==='staff'?'បុគ្គលិក':'កម្មករ',p.dp||'',p.ro,p.hd||'',p.nid||'',p.ph||'',p.pay,stOf(p),p.un||'',p.tr||'']))));
-$('rsf').onchange=e=>{const f=e.target.files[0];e.target.value='';if(!f)return;const r=new FileReader();
-  r.onload=()=>{try{const o=JSON.parse(r.result);
-    if(!Array.isArray(o.people)||!Array.isArray(o.depts)||!Array.isArray(o.users)||!o.users.some(u=>u.role==='admin'))throw 0;
-    if(!confirm('ស្តារទិន្នន័យ '+o.people.length+' នាក់? ទិន្នន័យបច្ចុប្បន្ននឹងត្រូវជំនួស'))return;
-    o.notes=Array.isArray(o.notes)?o.notes:[];o.users.forEach(u=>{delete u.pin});if(!o.users.some(u=>u.auth&&u.auth===U.auth))o.users.push(U);D=o;save();U=D.users.find(u=>u.auth===U.auth)||U;enter();flash('បានស្តារទិន្នន័យ')}catch(x){alert('ឯកសារមិនត្រឹមត្រូវ')}};r.readAsText(f)};
 function rby(n){const u=D.users.find(x=>x.name===n.by);
   return `<span class="mute">ដោយ <b>${esc(u&&u.fn||n.by)}</b> · ${esc(n.t)}</span>`+(u?` <button data-a="ov" data-b="${esc(u.name)}" style="font-size:.72rem;padding:0 8px;border-radius:99px">Overview</button>`:'')}
 function openUser(nm){const u=D.users.find(x=>x.name===nm);if(!u)return;
