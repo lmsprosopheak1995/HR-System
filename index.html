@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ប្រព័ន្ធគ្រប់គ្រងបុគ្គលិក និងកម្មករ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+<nav class="side" aria-label="ម៉ឺនុយ">
+  <div class="brand">ប្រព័ន្ធគ្រប់គ្រង<br>បុគ្គលិក-កម្មករ</div>
+  <button data-v="form" data-adm>បញ្ចូលព័ត៌មាន</button>
+  <button data-v="list">បញ្ជីបុគ្គលិក <span class="bd" id="bl"></span></button>
+  <button data-v="dept">គ្រប់គ្រងតាមផ្នែក <span class="bd" id="bd"></span></button>
+  <button data-v="notes">ដំណឹង <span class="bd" id="bn"></span></button>
+  <button data-v="un">សហជីព</button>
+  <button data-v="tr">ធ្វើដំណើរ</button>
+  <button data-v="rep">របាយការណ៍ប្រចាំខែ</button>
+  <button data-v="acc" data-adm>គណនីជំនួយការ</button>
+  <button id="bk" data-adm>បម្រុងទុកទិន្នន័យ</button><button id="rs" data-adm>ស្តារទិន្នន័យ</button><input type="file" id="rsf" accept=".json,application/json" hidden>
+  <div class="who" id="who"></div><button id="cp">ប្តូរ PIN</button><button id="lo">ចាកចេញ</button>
+</nav>
+<div class="lg" id="lg"><form class="card" id="lf" onsubmit="return false"><h2 style="margin:0 0 6px">ចូលប្រើប្រាស់</h2>
+<label>ឈ្មោះគណនី<input id="lu" required autocomplete="username"></label><label>លេខ PIN<input id="lp" type="password" inputmode="numeric" required autocomplete="current-password"></label>
+<div id="le" class="del"></div><button class="p" style="margin-top:12px;width:100%">ចូល</button><p class="mute" id="lh" style="margin-bottom:0"></p></form></div>
+<dialog id="rdg"><form id="rf"><h2 id="rt" style="margin-top:0">រាយការណ៍</h2>
+<label>ប្រភេទ<select id="rty"><option>សុំច្បាប់</option><option>មិនមកធ្វើការ</option><option>មកមិនទាន់</option><option>សម្រាកព្យាបាល</option><option>ឆ្លងទន្លេ</option></select></label>
+<label>កាលបរិច្ឆេទ<input id="rdt" type="date" required></label><label>ដល់ថ្ងៃទី (បើសុំច្បាប់ច្រើនថ្ងៃ)<input id="rto" type="date"></label>
+<label>កំណត់សម្គាល់<input id="rnt"></label>
+<div class="foot"><button type="button" id="rcx">បោះបង់</button><button class="p">ផ្ញើរបាយការណ៍</button></div></form></dialog>
+<dialog id="pdg" style="width:min(560px,94vw)"><div id="pc"></div><div class="foot"><button type="button" id="pcx">បិទ</button></div></dialog>
+<main class="wrap">
+
+<section class="view" id="v-form">
+  <h1 id="dt">បញ្ចូលព័ត៌មាន</h1>
+  <p class="sub">បំពេញព័ត៌មានបុគ្គលិក ឬកម្មករថ្មី</p>
+  <form class="card fmc" id="fm">
+    <div class="avrow"><span id="avp"></span><input id="avf" type="file" accept="image/*" aria-label="រូបថត"><button type="button" id="avx">លុបរូប</button></div>
+    <div class="row"><label>អត្តលេខ<input id="id" required></label><label>ឈ្មោះពេញ<input id="n" required></label></div>
+    <div class="row"><label>ប្រភេទ<select id="ty"><option value="staff">បុគ្គលិក</option><option value="worker">កម្មករ</option></select></label><label>ថ្ងៃ-ខែ-ឆ្នាំចូលធ្វើការ<input id="hd" type="date"></label></div>
+    <div class="row"><label>អត្តសញ្ញាណប័ណ្ណ<input id="nid" inputmode="numeric"></label><label>លេខទូរស័ព្ទ<input id="ph" type="tel"></label></div>
+    <div class="row"><label>ផ្នែក<select id="dp"></select></label><label>តួនាទី<input id="ro" required></label></div>
+    <div class="row"><label>ប្រាក់ខែ ($/ខែ)<input id="pay" type="number" min="0" step="1" required></label><label>ស្ថានភាព<select id="st"><option>កំពុងធ្វើការ</option><option>ឈប់សម្រាក</option><option>ឈប់ធ្វើការ</option></select></label></div>
+    <div class="row"><label>សហជីព<select id="un"><option value="">មិនមែនសមាជិក</option><option>សមាជិកសហជីព</option></select></label><label>មធ្យោបាយធ្វើដំណើរ<select id="tr"><option value="">មិនបញ្ជាក់</option><option>ម៉ូតូ</option><option>កង់</option><option>ដើរជើង</option><option>ឡានក្រុងរោងចក្រ</option><option>ឡានក្រុង</option><option>ម៉ូតូកង់បី</option><option>ផ្សេងៗ</option></select></label></div>
+    <div class="foot"><button class="p" type="submit">រក្សាទុក</button><button type="button" id="cx">បោះបង់</button></div>
+  </form>
+</section>
+
+<section class="view" id="v-list">
+  <h1>បញ្ជីបុគ្គលិក</h1>
+  <p class="sub">ស្វែងរក កែប្រែ និងកត់វត្តមានប្រចាំថ្ងៃ</p>
+  <div id="flash"></div>
+  <div class="stats" id="stats"></div>
+  <div class="bar">
+    <input id="q" type="search" placeholder="ស្វែងរកតាមឈ្មោះ លេខសម្គាល់ ឬតួនាទី" aria-label="ស្វែងរក">
+    <select id="f" aria-label="ប្រភេទ"><option value="">គ្រប់ប្រភេទ</option><option value="staff">បុគ្គលិក</option><option value="worker">កម្មករ</option></select>
+    <select id="fd" aria-label="ផ្នែក"></select><button id="csv">ទាញយក CSV</button>
+  </div>
+  <div class="tw"><table><thead><tr><th>អត្តលេខ</th><th>ឈ្មោះ</th><th>ប្រភេទ</th><th>ផ្នែក</th><th>តួនាទី</th><th>ចូលធ្វើការ</th><th>ប្រាក់ខែ</th><th>ស្ថានភាព</th><th>សហជីព</th><th>ធ្វើដំណើរ</th><th>ថ្ងៃនេះ</th><th></th></tr></thead><tbody id="tb"></tbody></table></div>
+</section>
+
+<section class="view" id="v-notes"><h1>ដំណឹង</h1><p class="sub" id="ns"></p>
+<div class="bar"><select id="nt" aria-label="ប្រភេទ"></select></div>
+<form class="card fmc" id="nf" style="margin-bottom:14px"><label>ផ្ញើដំណឹងទៅអ្នកគ្រប់គ្រង<input id="nx" required></label><div class="foot"><button class="p">ផ្ញើ</button></div></form><div id="nl"></div></section>
+<section class="view" id="v-acc"><h1>គណនីជំនួយការ</h1><p class="sub">កំណត់ឈ្មោះ PIN និងផ្នែកដែលជំនួយការម្នាក់ៗទទួលបន្ទុក</p>
+<form class="card fmc" id="af">
+    <div class="avrow"><span id="aap"></span><input id="aaf" type="file" accept="image/*" aria-label="រូបថត"><button type="button" id="aax">លុបរូប</button></div>
+    <div class="row"><label>អត្តលេខ (ប្រើចូលប្រព័ន្ធ)<input id="an" required></label><label>ឈ្មោះពេញ<input id="afn" required></label></div>
+    <div class="row"><label>តួនាទី<input id="aro" required></label><label>លេខទូរស័ព្ទ<input id="aph" type="tel"></label></div>
+    <div class="row"><label>លេខ PIN (យ៉ាងតិច ៤ ខ្ទង់)<input id="ap" required pattern="\d{4,}" inputmode="numeric"></label><label>ទទួលបន្ទុកផ្នែក/ក្រុម<select id="ad"></select></label></div>
+    <div class="foot"><button class="p" id="asb">បង្កើតគណនី</button><button type="button" id="acx" style="display:none">បោះបង់</button></div>
+  </form>
+<div class="tw" style="margin-top:14px"><table id="at" style="min-width:520px"></table></div></section>
+<section class="view" id="v-un"><h1>សហជីព</h1><p class="sub">សមាជិកសហជីព និងអ្នកមិនទាន់ជាសមាជិក</p>
+<div class="stats" id="ust"></div><div class="bar"><input id="usq" type="search" placeholder="ស្វែងរកតាមឈ្មោះ លេខសម្គាល់ ផ្នែក ឬតួនាទី" aria-label="ស្វែងរក"><select id="ufl" aria-label="តម្រង"><option value="">ទាំងអស់</option><option value="1">សមាជិក</option><option value="0">មិនមែនសមាជិក</option></select></div><div id="ulist"></div></section>
+<section class="view" id="v-tr"><h1>ធ្វើដំណើរ</h1><p class="sub">មធ្យោបាយធ្វើដំណើរមកកន្លែងធ្វើការ</p>
+<div class="stats" id="tst"></div><div class="bar"><input id="tsq" type="search" placeholder="ស្វែងរកតាមឈ្មោះ លេខសម្គាល់ ផ្នែក ឬតួនាទី" aria-label="ស្វែងរក"><select id="tfl" aria-label="តម្រង"></select></div><div id="tlist"></div></section>
+<section class="view" id="v-rep"><h1>របាយការណ៍ប្រចាំខែ</h1><p class="sub">ចំនួនថ្ងៃមកធ្វើការ និងប្រាក់ខែតាមថ្ងៃមក (ប្រាក់ខែ ÷ ២៦ ក្នុងមួយថ្ងៃ) · ទិន្នន័យវត្តមានចាប់ផ្តើមកត់ត្រាពីថ្ងៃនេះ</p>
+<div class="bar"><input type="month" id="rmo" aria-label="ខែ" style="flex:0 0 auto"><button id="rcv">ទាញយក CSV</button></div><div class="tw" id="rtb"></div></section>
+<section class="view" id="v-dept">
+  <h1>គ្រប់គ្រងតាមផ្នែក</h1>
+  <p class="sub">បង្កើតផ្នែក និងមើលសមាជិកក្នុងផ្នែកនីមួយៗ</p>
+  <div class="bar"><input id="nd" placeholder="ឈ្មោះផ្នែកថ្មី" aria-label="ឈ្មោះផ្នែកថ្មី"><button class="p" id="adb">បន្ថែមផ្នែក</button></div>
+  <div class="tw" id="sm" style="margin-top:0"></div>
+  <div class="dg" id="dg"></div>
+</section>
+
+</main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
