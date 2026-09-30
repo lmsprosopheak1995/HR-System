@@ -24,7 +24,7 @@
 </nav>
 <div class="lg" id="lg"><form class="card" id="lf" onsubmit="return false"><h2 style="margin:0 0 6px">ចូលប្រើប្រាស់</h2>
 <label>ឈ្មោះគណនី<input id="lu" required autocomplete="username"></label><label>លេខ PIN<input id="lp" type="password" inputmode="numeric" required autocomplete="current-password"></label>
-<div id="le" class="del"></div><button class="p" style="margin-top:12px;width:100%">ចូល</button><p class="mute" id="lh" style="margin-bottom:0"></p></form></div>
+<div id="le" class="del"></div><button class="p" style="margin-top:12px;width:100%">ចូល</button></form></div>
 <dialog id="rdg"><form id="rf"><h2 id="rt" style="margin-top:0">រាយការណ៍</h2>
 <label>ប្រភេទ<select id="rty"><option>សុំច្បាប់</option><option>មិនមកធ្វើការ</option><option>មកមិនទាន់</option><option>សម្រាកព្យាបាល</option><option>ឆ្លងទន្លេ</option></select></label>
 <label>កាលបរិច្ឆេទ<input id="rdt" type="date" required></label><label>ដល់ថ្ងៃទី (បើសុំច្បាប់ច្រើនថ្ងៃ)<input id="rto" type="date"></label>
@@ -69,7 +69,7 @@
     <div class="avrow"><span id="aap"></span><input id="aaf" type="file" accept="image/*" aria-label="រូបថត"><button type="button" id="aax">លុបរូប</button></div>
     <div class="row"><label>អត្តលេខ (ប្រើចូលប្រព័ន្ធ)<input id="an" required></label><label>ឈ្មោះពេញ<input id="afn" required></label></div>
     <div class="row"><label>តួនាទី<input id="aro" required></label><label>លេខទូរស័ព្ទ<input id="aph" type="tel"></label></div>
-    <div class="row"><label>លេខ PIN (យ៉ាងតិច ៤ ខ្ទង់)<input id="ap" required pattern="\d{4,}" inputmode="numeric"></label><label>ទទួលបន្ទុកផ្នែក/ក្រុម<select id="ad"></select></label></div>
+    <div class="row"><label>លេខ PIN (យ៉ាងតិច ៦ ខ្ទង់)<input id="ap" required pattern="\d{6,}" inputmode="numeric" autocomplete="new-password"></label><label>ទទួលបន្ទុកផ្នែក/ក្រុម<select id="ad"></select></label></div>
     <div class="foot"><button class="p" id="asb">បង្កើតគណនី</button><button type="button" id="acx" style="display:none">បោះបង់</button></div>
   </form>
 <div class="tw" style="margin-top:14px"><table id="at" style="min-width:520px"></table></div></section>
@@ -84,14 +84,13 @@
   <p class="sub">បង្កើតផ្នែក និងមើលសមាជិកក្នុងផ្នែកនីមួយៗ</p>
   <div class="bar"><input id="nd" placeholder="ឈ្មោះផ្នែកថ្មី" aria-label="ឈ្មោះផ្នែកថ្មី"><button class="p" id="adb">បន្ថែមផ្នែក</button></div>
   <div class="tw" id="sm" style="margin-top:0"></div>
-  <div class="dg" id="dg"></div>
 </section>
 
 </main>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="Js/config.js"></script>
-<script src="Js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
